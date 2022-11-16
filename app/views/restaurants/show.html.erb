@@ -5,6 +5,16 @@
 <div>
   <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant) %> |
   <%= link_to "Back to restaurants", restaurants_path %>
+  <%= link_to "Review", new_restaurant_review_path(@restaurant) %>
 
   <%= button_to "Destroy this restaurant", @restaurant, method: :delete %>
+</div>
+
+<div>
+<h4>Reviews</h4>
+<% @restaurant.reviews.each do |review| %>
+  <p>Rating: <%= review.rating %></p>
+  <p>Comment: <%= review.content %></p>
+  <%= link_to "Delete", review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<% end %>
 </div>
